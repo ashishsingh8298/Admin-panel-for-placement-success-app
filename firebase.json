@@ -1,0 +1,10 @@
+{
+  "hosting": {
+    "public": "placementsuccess",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
