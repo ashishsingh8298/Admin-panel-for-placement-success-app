@@ -11,7 +11,9 @@
 
   <title>Admin Dashboard</title>
 
+
   <!-- Custom fonts for this template-->
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link
     href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
@@ -19,6 +21,7 @@
 
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
+
 
 </head>
 
@@ -65,7 +68,7 @@
             <h6 class="collapse-header">Components:</h6>
             <a class="collapse-item" href="postjob.html">Post Job</a>
             <a class="collapse-item" href="deletejob.html">Delete The Job</a>
-            <a class="collapse-item" href="updatejob.html">Update About Job</a>
+            <a class="collapse-item" href="jobhistory.html">Job History</a>
           </div>
         </div>
       </li>
@@ -80,13 +83,12 @@
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Custom Utilities:</h6>
-            <a class="collapse-item" href="utilities-color.html">Students</a>
-            <a class="collapse-item" href="utilities-border.html">Teachers</a>
-            <a class="collapse-item" href="utilities-animation.html">Admins</a>
+            <a class="collapse-item" href="student.html">Students</a>
+            <a class="collapse-item" href="teacher.html">Teachers</a>
+            <a class="collapse-item" href="admin.html">Admins</a>
           </div>
         </div>
       </li>
-
       <!-- Divider -->
       <hr class="sidebar-divider">
 
@@ -349,30 +351,30 @@
           <!-- Page Heading -->
           <h1 class="h3 mb-4 text-gray-800">Post Job</h1>
           <div class="container">
-            <form class="user" id="postJob_form">
+            <form class="user" id="postJob_form" autocomplete="off">
               <div class="form-group">
                 <label for="jbTtle">Job Title:</label>
-                <input type="text" class="form-control" id="jobTitle">
+                <input type="text" class="form-control" id="jobTitle" required="true">
               </div>
               <div class="form-group">
                 <label for="jbDesc">Job Description:</label>
-                <textarea class="form-control" rows="5" id="jobDescription"></textarea>
+                <textarea class="form-control" rows="5" id="jobDescription" required="true"></textarea>
               </div>
               <div class="form-group">
                 <label for="jbResp">Job Responsiblity:</label>
-                <textarea class="form-control" rows="3" id="jobResponsibility"></textarea>
+                <textarea class="form-control" rows="3" id="jobResponsibility" required="true"></textarea>
               </div>
               <div class="form-group">
                 <label for="reqSk">Required Skills:</label>
-                <textarea class="form-control" rows="3" id="requiredSkills"></textarea>
+                <textarea class="form-control" rows="3" id="requiredSkills" required="true"></textarea>
               </div>
               <div class="form-group">
                 <label for="elgCr">Eligibility Criteria:</label>
-                <textarea class="form-control" rows="1" id="elegibilityCriteria"></textarea>
+                <textarea class="form-control" rows="1" id="elegibilityCriteria" required="true"></textarea>
               </div>
               <div class="form-group">
                 <label for="jbBr">Eligible Branch ( Seperate branch code by ,(commas) ) :</label>
-                <input type="text" class="form-control" id="elegibleBranch">
+                <input type="text" class="form-control" id="elegibleBranch" required="true">
               </div>
               <div class="form-group">
                 <label for="jbCtc">Job CTC:</label>
@@ -380,15 +382,21 @@
               </div>
               <div class="form-group">
                 <label for="jbLk">Applying Date From:</label>
-                <input type="text" class="form-control" id="applyDateFrom">
+                <input type="text" class="form-control" id="applyDateFrom" required="true">
               </div>
               <div class="form-group">
                 <label for="jbLk">Applying Date To:</label>
-                <input type="text" class="form-control" id="applyDateTo">
+                <input type="text" class="form-control" id="applyDateTo" required="true">
               </div>
               <div class="form-group">
-                <label for="jbLk">Link:</label>
-                <input type="text" class="form-control" id="link">
+                <label for="jbLklg">Link For logo:</label>
+                <input type="url" class="form-control" id="linkLogo" placeholder="https://example.com"
+                  pattern="https://.*" required="true">
+              </div>
+              <div class="form-group">
+                <label for="jbLk">Any External Link Provided:</label>
+                <input type="url" class="form-control" id="link" placeholder="https://example.com" pattern="https://.*"
+                  required="true">
               </div>
 
 
@@ -472,7 +480,10 @@
       measurementId: "G-8FTB127YJ5"
     };
   </script>
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <script type="text/javascript" src="js/postJob.js"></script>
+
 
 </body>
 

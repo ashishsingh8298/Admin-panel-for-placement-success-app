@@ -10,7 +10,7 @@ var table = $('#dataTable').DataTable();
 
 
 var database = firebase.database();
-var ref = database.ref("Users");
+var ref = database.ref("Company");
 
 ref.once('value',   function(snapshot) {
     snapshot.forEach(function(childSnapshot) {
@@ -18,10 +18,12 @@ ref.once('value',   function(snapshot) {
       var childData = childSnapshot.val();
       // ...
       var key=childKey;
-      var name=childData['Name'];
-      var email=childData['Email'];
-      var phoneNumber=childData['Phone Number'];
-      var dataSet = [key,name,email,phoneNumber];
+      var jobTitle=childData['jobTitle'];
+      var requiredSkills=childData['requiredSkills'];
+      var jobCTC=childData['jobCtc'];
+      var applyingDateFrom=childData['applyDateFrom'];
+      var applyingDateTo=childData['applyDateTo'];
+      var dataSet = [key,jobTitle,requiredSkills,jobCTC,applyingDateFrom,applyingDateTo];
     	table.row.add(dataSet).draw();
     });
   });

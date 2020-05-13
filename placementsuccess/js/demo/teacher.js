@@ -10,7 +10,7 @@ var table = $('#dataTable').DataTable();
 
 
 var database = firebase.database();
-var ref = database.ref("Users");
+var ref = database.ref("teacher");
 
 ref.once('value',   function(snapshot) {
     snapshot.forEach(function(childSnapshot) {
