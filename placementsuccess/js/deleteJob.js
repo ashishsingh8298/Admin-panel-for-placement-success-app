@@ -2,6 +2,15 @@ firebase.initializeApp(firebaseConfig);
 // Get a reference to the database service
 // var database = firebase.database();
 // var ref = database.ref("Company");
+firebase.auth().onAuthStateChanged(function (user) {
+	if (user != null) {
+		document.getElementById("userEmailId").innerHTML = user.email;
+		document.getElementById("userProfile").src = user.photoURL;
+	} else {
+		window.location.replace("index.html");
+	}
+});
+
 
 
 function deleteJob() {

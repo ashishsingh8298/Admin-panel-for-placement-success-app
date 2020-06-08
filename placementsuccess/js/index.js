@@ -3,6 +3,7 @@ firebase.initializeApp(firebaseConfig);
 var database = firebase.database();
 var ref = database.ref("admin");
 
+
 function register() {
   const signUpForm = document.querySelector("#signUp_form");
   const email = signUpForm["exampleInputEmail"].value;
@@ -12,46 +13,62 @@ function register() {
     " " +
     signUpForm["exampleLastName"].value;
   var userCreateds = true;
-  firebase
-    .auth()
-    .createUserWithEmailAndPassword(email, password)
-    .catch(function (error) {
-      // Handle Errors here.
-      var errorCode = error.code;
-      var errorMessage = error.message;
-      alert(errorMessage);
-      userCreateds = false;
-      // ...
-      window.location.href = "index.html";
+
+
+
+  // if (userCreateds && email != "" && password != "") {
+  if (email != "" && password != "") {
+    // checking if the user is allowed to register (start of ref)
+    ref.orderByChild('email').startAt(email).endAt(email).once('value', function (snap) {
+      // fetching email from database 
+      var childData = snap.val();
+      for (x in childData) {
+        childData = childData[x];
+      }
+      if (childData != null) {
+        // storing data from database and verifying it from entered data
+        var emailDb = childData['email'];
+        var userNameDb = childData['userName'];
+        if (email == emailDb) {
+          firebase
+            .auth()
+            .createUserWithEmailAndPassword(email, password)
+            .catch(function (error) {
+              // Handle Errors here.
+              var errorCode = error.code;
+              var errorMessage = error.message;
+              alert(errorMessage);
+              userCreateds = false;
+              // ...
+            });
+          // onAuthStateChanged starts here...
+          firebase.auth().onAuthStateChanged(function (user) {
+            alert("Registration Successfull...");
+            if (user) {
+              // User is signed in.
+              user.sendEmailVerification().then(function () {
+                // Email sent.
+                confirm('Verification Email sent...');
+                window.location.href = "login.html";
+              }).catch(function (error) {
+                // An error happened.
+                alert(error.message);
+              });
+            } else {
+              // No user is signed in.
+            }
+          });
+          // onAuthStateChanged ends
+        }
+
+      } else {
+        alert("Please contact DBA at placementsuccess73@gmail.com");
+        window.location.reload();
+      }
     });
+    // end of ref
 
-  if (userCreateds && email != "" && password != "") {
-    alert("Registration Successful...");
   }
-  firebase.auth().onAuthStateChanged(function (user) {
-    if (user) {
-      var data = {
-        userName: name,
-        email: email,
-      };
-      ref.push(data);
-      user
-        .sendEmailVerification()
-        .then(function () {
-          // Email sent.
-          alert("Please verify your email...");
-        })
-        .catch(function (error) {
-          // An error happened.
-        });
-
-      // User is signed in.
-      window.location.replace("register.html");
-    } else {
-      // No user is signed in.
-      // alert('Please try Signing Again...');
-    }
-  });
 }
 
 function google() {

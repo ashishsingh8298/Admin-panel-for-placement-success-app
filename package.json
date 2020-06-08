@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "firebase-admin": "^8.12.0",
+    "firebase-admin": "^8.12.1",
     "js-datepicker": "^5.11.0",
     "require": "^2.4.20"
   },
